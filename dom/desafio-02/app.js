@@ -1,14 +1,14 @@
 new Vue({
-    el: '#desafio',
-    data: {
-        valor: ''
+  el: "#desafio",
+  data: {
+    valor: "",
+  },
+  methods: {
+    showAlert() {
+      alert("Você clicou!");
     },
-    methods: {
-        showAlert() {
-            alert('Você clicou!')
-        },
-        storageKeydown(event) {
-           this.valor = event.target.value
-        }
-    }
-})
+    storageKeydown(event) {
+      this.valor = event.target.value;
+    },
+  },
+});
