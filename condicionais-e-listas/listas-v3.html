@@ -25,6 +25,14 @@
         <h1>{{ cor }}</h1>
         <p>{{ i }}</p>
       </template>
+      <hr>
+      <ul>
+        <li v-for="pessoa in pessoas">
+          <template v-for="(valor, chave, index) in pessoa">
+            {{ chave }} = {{ valor }} ({{ index}})
+          </template>
+        </li>
+      </ul>
     </div>
 
     <script>
