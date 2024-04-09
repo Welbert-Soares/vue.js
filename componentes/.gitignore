@@ -1,1 +1,3 @@
-componente-desafio
+componente-desafio.component.html',
+  styleUrls: ['./componente-desafio.component.css']
+})
