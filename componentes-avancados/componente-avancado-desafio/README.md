@@ -1,4 +1,4 @@
-# comp-avancado-desafio
+# componente-avancado-desafio
 
 ## Project setup
 ```
@@ -13,11 +13,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your tests
-```
-npm run test
 ```
 
 ### Lints and fixes files
