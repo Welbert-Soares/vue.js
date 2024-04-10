@@ -27,13 +27,13 @@ export default {
                 texto: 'Lembre-se sempre que você é absolutamente único. Assim como todos os outros.',
                 autor: 'Margaret Mead'
             }, {
-                fonte: 'Frases de Mãe',
-                texto: 'Isso não é um quarto, é um chiqueiro.',
-                autor: 'Roberta'
+                fonte: 'oxigenweb',
+                texto: 'Lembro que quando eu abri a primeira versão do Facebook, pensei: ‘Sabe, alguém precisa construir um serviço como esse para o mundo’. Eu só não pensei que nós seríamos as pessoas que faríamos isso.',
+                autor: 'Mark Zuckerberg'
             }, {
-                fonte: 'Frases de Pai',
-                texto: 'Vou contar até 3! 1, 2, 2...',
-                autor: 'Gustavo'
+                fonte: 'meetime',
+                texto: 'A única maneira de fazer algo excelente é amar o que você faz. Se você ainda não a encontrou, continue procurando. Não se acomode.',
+                autor: 'Steve Jobs'
             }]
         }
     },
