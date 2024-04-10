@@ -1,16 +1,16 @@
 <template>
 	<div id="app">
-		<Citacoes />
-		<Sobre />
+		<CitacoesComponente />
+		<SobreNos />
 	</div>
 </template>
 
 <script>
-import Citacoes from './components/Citacoes'
-import Sobre from './components/Sobre'
+import CitacoesComponente from '@/components/CitacoesComponente'
+import SobreNos from '@/components/SobreNos'
 
 export default {
-	components: { Citacoes, Sobre }
+	components: { CitacoesComponente, SobreNos }
 }
 </script>
 
