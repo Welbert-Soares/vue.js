@@ -27,7 +27,7 @@ export default {
 <style>
     .task-component {
         box-sizing: border-box;
-        widows: 350px;
+        width: 350px;
         height: 150px;
         padding: 10px;
         border-radius: 8px;
