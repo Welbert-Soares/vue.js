@@ -47,6 +47,7 @@ export default {
     .pending {
         border-left: 12px solid #b73229;
         background-color: #f44336;
+        
     }
 
     .done {
@@ -79,6 +80,7 @@ export default {
 
     .pending .close:active {
         background-color: #f44336;
+        
     }
 
     .done .close:active {

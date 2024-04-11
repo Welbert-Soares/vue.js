@@ -1,6 +1,9 @@
 <template>
 	<div id="app">
-		<h1>Tarefas</h1>
+		<h1 class="button" data-text="Awesome">
+			<span class="actual-text">&nbsp;Tarefas&nbsp;</span>
+			<span aria-hidden="true" class="hover-text">&nbsp;Tarefas&nbsp;</span>
+		</h1>
 		<TaskProgress :progress="progress"></TaskProgress>
 		<NewTask @taskAdded="addTask">
 		</NewTask>
@@ -90,9 +93,37 @@ body {
 	height: 100vh;
 }
 
-#app h1 {
-	margin-bottom: 5px;
-	font-weight: 300;
-	font-size: 3rem;
+#app .button {
+	--border-right: 6px;
+	--text-stroke-color: rgba(255, 255, 255, 0.6);
+	--animation-color: #37FF8B;
+	--fs-size: 3em;
+	letter-spacing: 3px;
+	text-decoration: none;
+	font-size: var(--fs-size);
+	font-family: "Arial";
+	position: relative;
+	text-transform: uppercase;
+	color: transparent;
+	-webkit-text-stroke: 1px var(--text-stroke-color);
 }
+
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color))
+}
+
 </style>
