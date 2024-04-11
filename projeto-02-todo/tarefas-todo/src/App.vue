@@ -1,8 +1,10 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
-		<NewTask @taskAdded="addTask"></NewTask>
-		<TasksGrid :tasks="tasks"></TasksGrid>
+		<NewTask @taskAdded="addTask">
+		</NewTask>
+		<TasksGrid @taskDeleted="deleteTask" :tasks="tasks">
+		</TasksGrid>
 	</div>
 </template>
 
@@ -17,47 +19,55 @@ export default {
 	},
 	data() {
 		return {
-			tasks: [
-				{name: 'Estudar Vue.js', pending: true},
-				{name: 'Estudar JavaScript', pending: false},
-			]
+			tasks: []
 		}
 	},
 	methods: {
 		addTask(task) {
+			if (!task.name.trim()) {
+				alert('O nome da tarefa não pode estar vazio.');
+				return;
+			}
+			if (task.name.length > 25) {
+				alert('O nome da tarefa não pode ter mais de 25 caracteres.');
+				return;
+			}
 			const sameName = t => t.name === task.name
 			const reallyNew = this.tasks.filter(sameName).length == 0
-			if(reallyNew) {
+			if (reallyNew) {
 				this.tasks.push({
 					name: task.name,
 					pending: task.pending || true
 				})
 			}
+		},
+		deleteTask(i) {
+			this.tasks.splice(i, 1)
 		}
-	
+
 	}
 }
 </script>
 
 <style>
-	body {
-		font-family: 'Lato', sans-serif;
-		background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
-		color: #FFF;
-	}
+body {
+	font-family: 'Lato', sans-serif;
+	background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
+	color: #FFF;
+}
 
-	#app {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		height: 100vh;
-	}
+#app {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 
-	#app h1 {
-		margin-bottom: 5px;
-		font-weight: 300;
-		font-size: 3rem;
-	}
+#app h1 {
+	margin-bottom: 5px;
+	font-weight: 300;
+	font-size: 3rem;
+}
 </style>
