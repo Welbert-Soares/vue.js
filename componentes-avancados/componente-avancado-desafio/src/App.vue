@@ -1,63 +1,84 @@
 <template>
 	<div id="app">
 		<span>
-			<button class="vermelho">Carregar Componente Vermelho</button>
-			<button class="verde">Carregar Componente Verde</button>
-			<button class="azul">Carregar Componente Azul</button>
+			<button class="vermelho" @click="componente = 'RedComponent'">
+				Carregar Componente Vermelho
+			</button>
+			<button class="verde" @click="componente = 'GreenComponent'">
+				Carregar Componente Verde
+			</button>
+			<button class="azul" @click="componente = 'BlueComponent'">
+				Carregar Componente Azul
+			</button>
 		</span>
-		
-		<Vermelho />
-		<Verde />
-		<Azul />
+
+		<component :is="componente">
+			<span slot="conteudo">Conteúdo do Componente <strong> {{ componente }} </strong></span>
+		</component>
 	</div>
 </template>
 
 <script>
-import Vermelho from './components/Vermelho.vue'
-import Verde from './components/Verde.vue'
-import Azul from './components/Azul.vue'
+import RedComponent from './components/RedComponent.vue';
+import GreenComponent from './components/GreenComponent.vue';
+import BlueComponent from './components/BlueComponent.vue';
 
 export default {
 	name: 'app',
-	components: { Vermelho, Verde, Azul },
+	components: { RedComponent, GreenComponent, BlueComponent },
+	data() {
+		return {
+			componente: 'RedComponent',
+		}
+	}
 }
 </script>
 
 <style>
-	#app {
-		font-family: 'Avenir', Helvetica, Arial, sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		text-align: center;
-		color: #2c3e50;
-		margin-top: 60px;
-	}
+#app {
+	font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
+}
 
-	button {
-		padding: 10px;
-		color: #FFF;
-		font-size: 1.3rem;
-	}
+button {
+	padding: 10px;
+	color: #FFF;
+	font-size: 1.3rem;
+	border-radius: 10px;
+	margin-right: 10px;
+}
 
-    .caixa {
-        color: #FFF;
-        font-size: 1.8rem;
-        padding: 25px;
-		margin: 10px 0px;
-    }
+button:hover {
+	opacity: 1;
+	cursor: pointer;
+}
 
-	.vermelho {
-        border: 2px solid red;
-        background-color: #f54235;
-    }
+.caixa {
+	color: #FFF;
+	font-size: 1.8rem;
+	padding: 25px;
+	margin: 10px 0px;
+}
 
-	.verde {
-        border: 2px solid green;
-        background-color: #49b057;
-    }
+.vermelho {
+	border: 2px solid #b60101;
+	background-color: #f54235;
+	opacity: 0.9;
+}
 
-	.azul {
-        border: 2px solid blue;
-        background-color: #2594f0;
-    }
+.verde {
+	border: 2px solid green;
+	background-color: #49b057;
+	opacity: 0.9;
+}
+
+.azul {
+	border: 2px solid blue;
+	background-color: #2594f0;
+	opacity: 0.9;
+}
 </style>

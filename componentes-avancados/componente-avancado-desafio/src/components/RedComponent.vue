@@ -1,6 +1,6 @@
 <template>
-    <div class="caixa verde">
-        Conteúdo do Componente Verde
+    <div class="caixa vermelho">
+        <slot name="conteudo"></slot>
     </div>
 </template>
 
@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>
