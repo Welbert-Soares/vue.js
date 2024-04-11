@@ -3,6 +3,7 @@
         <template v-if="tasks.length">
             <TaskComponent v-for="(task, i) in tasks" :key="task.name"
             @taskDeleted="$emit('taskDeleted', i)"
+            @taskStateChanged="$emit('taskStateChanged', i)"
             :task="task">
             </TaskComponent>
         </template>
