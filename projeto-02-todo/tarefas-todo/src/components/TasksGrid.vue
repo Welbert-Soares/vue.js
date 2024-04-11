@@ -1,9 +1,10 @@
 <template>
     <div class="tasks-grid">
-        <template>
+        <template v-if="tasks.length">
             <TaskComponent v-for="task in tasks" :key="task.name" :task="task">
             </TaskComponent>
         </template>
+        <p v-else class="no-task">Tudo em dia!</p>
     </div>
 </template>
 
@@ -23,4 +24,19 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+    .tasks-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    
+
+    .no-task {
+        color: #aaa;
+        font-size: 1.7rem;
+    }
+</style>
