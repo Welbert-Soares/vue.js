@@ -5,20 +5,24 @@
 			<form class="painel">
 				<div class="cabecalho">Formulário</div>
 				<ComponenteRotulo nome="E-mail">
-					<input type="text">
+					<input type="text" v-model.lazy.trim="usuario.email">
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Senha">
-					<input type="password">
+					<input type="password" v-model="usuario.senha">
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Idade">
-					<input type="number">
+					<input type="number" v-model.number="usuario.idade">
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Mensagem">
-					<textarea name="" cols="30" rows="5"></textarea>
+					<textarea name="" cols="30" rows="5" v-model="mensagem"></textarea>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Características do Problema">
-					<span class="mr-4"><input type="checkbox" value="reproduzivel"> Reproduzível</span>
-					<span><input type="checkbox" value="intermitente"> Intermitente</span>
+					<span class="mr-4">
+						<input type="checkbox" value="reproduzivel" v-model="caracteristicas"> Reproduzível
+					</span>
+					<span>
+						<input type="checkbox" value="intermitente" v-model="caracteristicas"> Intermitente
+					</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Qual produto?">
 					<span class="mr-4"><input type="radio"> Web</span>
@@ -39,19 +43,23 @@
 			<div class="painel">
 				<div class="cabecalho">Resultado</div>
 				<ComponenteRotulo nome="E-mail">
-					<span>???</span>
+					<span>{{ usuario.email }}</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Senha">
-					<span>???</span>
+					<span>{{ usuario.senha }}</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Idade">
-					<span>???</span>
+					<span>{{ usuario.idade }}</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Mensagem">
-					<span>???</span>
+					<span style="white-space: pre;">{{ mensagem }}</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Marque as Opções">
-					<span>???</span>
+					<span>
+						<ul>
+							<li v-for="caracteristica in caracteristicas" :key="caracteristica" >{{ caracteristica }}</li>
+						</ul>
+					</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Qual produto?">
 					<span>???</span>
@@ -73,12 +81,26 @@ import ComponenteEscolha from './components/ComponenteEscolha.vue'
 
 export default {
 	name: 'app',
-	components: { ComponenteRotulo, ComponenteEscolha }
+	components: {
+		ComponenteRotulo,
+		ComponenteEscolha
+	},
+	data() {
+		return {
+			mensagem: '',
+			caracteristicas: [],
+			usuario: {
+				email: '',
+				senha: '',
+				idade: 20,
+			}
+		}
+	},
+
 }
 </script>
 
 <style>
-
 body {
 	background-color: #ECECEC;
 }
