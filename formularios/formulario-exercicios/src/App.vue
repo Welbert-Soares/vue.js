@@ -25,17 +25,27 @@
 					</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Qual produto?">
-					<span class="mr-4"><input type="radio"> Web</span>
-					<span class="mr-4"><input type="radio"> Mobile</span>
-					<span><input type="radio"> Outro</span>
+					<span class="mr-4">
+						<input type="radio" value="web" v-model="produto"> Web
+					</span>
+					<span class="mr-4">
+						<input type="radio" value="mobile" v-model="produto"> Mobile
+					</span>
+					<span>
+						<input type="radio" value="outro" v-model="produto"> Outro
+					</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Prioridade">
-					<select name="" id="">
-						<option></option>
+					<select v-model="prioridade">
+						<option v-for="prioridade in prioridades" 
+							:value="prioridade.id"
+							:key="prioridade.id"
+							:selected="prioridade.id === 1">
+							{{ prioridade.nome }}</option>
 					</select>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Primeira Reclamação?">
-					<ComponenteEscolha />
+					<ComponenteEscolha v-model="escolha" />
 				</ComponenteRotulo>
 				<hr>
 				<button>Enviar</button>
@@ -57,18 +67,19 @@
 				<ComponenteRotulo nome="Marque as Opções">
 					<span>
 						<ul>
-							<li v-for="caracteristica in caracteristicas" :key="caracteristica" >{{ caracteristica }}</li>
+							<li v-for="caracteristica in caracteristicas" :key="caracteristica">{{ caracteristica }}
+							</li>
 						</ul>
 					</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Qual produto?">
-					<span>???</span>
+					<span>{{ produto }}</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Prioridade">
-					<span>???</span>
+					<span>{{ prioridade }}</span>
 				</ComponenteRotulo>
 				<ComponenteRotulo nome="Primeira Reclamação?">
-					<span>???</span>
+					<span>{{ escolha }}</span>
 				</ComponenteRotulo>
 			</div>
 		</div>
@@ -87,13 +98,21 @@ export default {
 	},
 	data() {
 		return {
+			produto: 'web',
+			prioridade: 1,
+			prioridades: [
+				{ id: 1, nome: 'Baixa' },
+				{ id: 2, nome: 'Média' },
+				{ id: 3, nome: 'Alta' },
+			],
 			mensagem: '',
 			caracteristicas: [],
 			usuario: {
 				email: '',
 				senha: '',
 				idade: 20,
-			}
+			},
+			escolha: true,
 		}
 	},
 
