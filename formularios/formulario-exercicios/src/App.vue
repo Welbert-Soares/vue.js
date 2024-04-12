@@ -4,76 +4,76 @@
 		<div class="conteudo">
 			<form class="painel">
 				<div class="cabecalho">Formulário</div>
-				<Rotulo nome="E-mail">
+				<ComponenteRotulo nome="E-mail">
 					<input type="text">
-				</Rotulo>
-				<Rotulo nome="Senha">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Senha">
 					<input type="password">
-				</Rotulo>
-				<Rotulo nome="Idade">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Idade">
 					<input type="number">
-				</Rotulo>
-				<Rotulo nome="Mensagem">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Mensagem">
 					<textarea name="" cols="30" rows="5"></textarea>
-				</Rotulo>
-				<Rotulo nome="Características do Problema">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Características do Problema">
 					<span class="mr-4"><input type="checkbox" value="reproduzivel"> Reproduzível</span>
 					<span><input type="checkbox" value="intermitente"> Intermitente</span>
-				</Rotulo>
-				<Rotulo nome="Qual produto?">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Qual produto?">
 					<span class="mr-4"><input type="radio"> Web</span>
 					<span class="mr-4"><input type="radio"> Mobile</span>
 					<span><input type="radio"> Outro</span>
-				</Rotulo>
-				<Rotulo nome="Prioridade">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Prioridade">
 					<select name="" id="">
 						<option></option>
 					</select>
-				</Rotulo>
-				<Rotulo nome="Primeira Reclamação?">
-					<Escolha />
-				</Rotulo>
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Primeira Reclamação?">
+					<ComponenteEscolha />
+				</ComponenteRotulo>
 				<hr>
 				<button>Enviar</button>
 			</form>
 			<div class="painel">
 				<div class="cabecalho">Resultado</div>
-				<Rotulo nome="E-mail">
+				<ComponenteRotulo nome="E-mail">
 					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Senha">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Senha">
 					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Idade">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Idade">
 					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Mensagem">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Mensagem">
 					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Marque as Opções">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Marque as Opções">
 					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Qual produto?">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Qual produto?">
 					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Prioridade">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Prioridade">
 					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Primeira Reclamação?">
+				</ComponenteRotulo>
+				<ComponenteRotulo nome="Primeira Reclamação?">
 					<span>???</span>
-				</Rotulo>
+				</ComponenteRotulo>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import Rotulo from './components/Rotulo.vue'
-import Escolha from './components/Escolha.vue'
+import ComponenteRotulo from './components/ComponenteRotulo.vue'
+import ComponenteEscolha from './components/ComponenteEscolha.vue'
 
 export default {
 	name: 'app',
-	components: { Rotulo, Escolha }
+	components: { ComponenteRotulo, ComponenteEscolha }
 }
 </script>
 
