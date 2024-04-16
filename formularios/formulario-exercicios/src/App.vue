@@ -2,7 +2,7 @@
 	<div id="app">
 		<h1>Registrar Reclamação</h1>
 		<div class="conteudo">
-			<form class="painel">
+			<form class="painel" v-if="!enviado">
 				<div class="cabecalho">Formulário</div>
 				<ComponenteRotulo nome="E-mail">
 					<input type="text" v-model.lazy.trim="usuario.email">
@@ -48,9 +48,9 @@
 					<ComponenteEscolha v-model="escolha" />
 				</ComponenteRotulo>
 				<hr>
-				<button>Enviar</button>
+				<button @click.prevent="enviar">Enviar</button>
 			</form>
-			<div class="painel">
+			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
 				<ComponenteRotulo nome="E-mail">
 					<span>{{ usuario.email }}</span>
@@ -96,6 +96,11 @@ export default {
 		ComponenteRotulo,
 		ComponenteEscolha
 	},
+	methods: {
+		enviar() {
+			this.enviado = true
+		}
+	},
 	data() {
 		return {
 			produto: 'web',
@@ -113,6 +118,7 @@ export default {
 				idade: 20,
 			},
 			escolha: true,
+			enviado: false,
 		}
 	},
 
