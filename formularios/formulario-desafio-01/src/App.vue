@@ -36,7 +36,7 @@
           <span> {{ nomeCompleto.nome }}</span>
         </componente-rotulo>
         <componente-rotulo nome="Sobrenome">
-          <span> {{ NomeCompleto.sobrenome }}</span>
+          <span> {{ nomeCompleto.sobrenome }}</span>
         </componente-rotulo>
         <componente-rotulo nome="Email">
           <span> {{ email }}</span>
