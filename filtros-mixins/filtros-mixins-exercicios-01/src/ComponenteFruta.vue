@@ -11,10 +11,11 @@
 import FrutasMixin from './FrutasMixin'
 
 export default {
-   mixins: [FrutasMixin],
+    mixins: [FrutasMixin],
+    created() {
+        console.log('created no Frutas.vue')
+    }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
