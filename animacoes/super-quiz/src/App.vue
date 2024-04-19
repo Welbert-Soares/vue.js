@@ -7,7 +7,6 @@
 				@answered="showResult">
 			</QuestionComponent>
 			<ResultComponent v-else :result="result" @confirmed="nextQuestion">
-
 			</ResultComponent>
 		</transition>
 
