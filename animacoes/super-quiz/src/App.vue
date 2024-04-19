@@ -1,15 +1,16 @@
 <template>
 	<div id="app">
 		<h1>Super Quiz</h1>
-		<QuestionComponent v-if="questionMode"
-			:question="questions[currentQuestion]"
-			@answered="showResult">
-		</QuestionComponent>
-		<ResultComponent v-else
-			:result="result"
-			@confirmed="nextQuestion">
+		<transition name="flip" mode="out-in">
+			<QuestionComponent v-if="questionMode" 
+				:question="questions[currentQuestion]" 
+				@answered="showResult">
+			</QuestionComponent>
+			<ResultComponent v-else :result="result" @confirmed="nextQuestion">
 
-		</ResultComponent>
+			</ResultComponent>
+		</transition>
+
 	</div>
 </template>
 
@@ -29,7 +30,7 @@ export default {
 			questionMode: true,
 			questions,
 			currentQuestion: 0,
-			
+
 		}
 	},
 	methods: {
@@ -71,13 +72,23 @@ body {
 }
 
 @keyframes flip-out {
-	from { transform: rotateY(0deg); }
-	to { transform: rotateY(90deg); }
+	from {
+		transform: rotateY(0deg);
+	}
+
+	to {
+		transform: rotateY(90deg);
+	}
 }
 
 @keyframes flip-in {
-	from { transform: rotateY(90deg); }
-	to { transform: rotateY(0deg); }
+	from {
+		transform: rotateY(90deg);
+	}
+
+	to {
+		transform: rotateY(0deg);
+	}
 }
 
 .flip-enter-active {
