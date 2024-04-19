@@ -2,7 +2,8 @@
   <div id="app" class="container-fluid">
     <h1>Animações</h1>
     <hr>
-    <button class="m-3  btn bg-indigo-500 shadow-lg shadow-indigo-500/50" @click="exibir = !exibir">Mostrar Mensagem</button>
+    <button class="m-3  btn bg-indigo-500 shadow-lg shadow-indigo-500/50" @click="exibir = !exibir">Mostrar
+      Mensagem</button>
 
     <!-- <transition name="fade" appear="">
       <div class="alert" v-if="exibir">{{ msg }}</div>
@@ -15,16 +16,27 @@
     leave-active-class="animate-ping">
     <div class="alert" v-show="exibir">{{ msg }}</div>
   </transition> -->
-  <hr>
-  <select name="" id="" v-model="tipoAnimacao" class="mb-4"> 
-    <option value="fade">Fade</option>
-    <option value="slide">Slide</option>
-  </select>
-  <transition :name="tipoAnimacao" mode="out-in">
-    <div class="alert" v-if="exibir" key="info">{{ msg }}</div>
-    <div class="warning" v-else key="warn">{{ msg }}</div>
-  </transition>
-</div>
+    <hr>
+    <select name="" id="" v-model="tipoAnimacao" class="mb-4">
+      <option value="fade">Fade</option>
+      <option value="slide">Slide</option>
+    </select>
+    <transition :name="tipoAnimacao" mode="out-in">
+      <div class="alert" v-if="exibir" key="info">{{ msg }}</div>
+      <div class="warning" v-else key="warn">{{ msg }}</div>
+    </transition>
+
+    <hr>
+    <button class="m-3" @click="exibir2 = !exibir2">Exibir</button>
+    <transition 
+      :css="false"
+      @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @enter-cancelled="enterCancelled"
+      @berfore-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @leave-cancelled="leaveCancelled">
+      <div v-if="exibir2" class="caixa"></div>
+    </transition>
+
+
+  </div>
 </template>
 
 <script>
@@ -34,10 +46,40 @@ export default {
     return {
       msg: 'Uma mensagem de informação para o usuário!',
       exibir: false,
+      exibir2: true,
       tipoAnimacao: 'fade'
     }
+  },
+  methods: {
+    beforeEnter() {
+      console.log('beforeEnter');
+    },
+    enter(done) {
+      console.log('enter');
+      done()
+    },
+    afterEnter() {
+      console.log('afterEnter');
+    },
+    enterCancelled() {
+      console.log('enterCancelled');
+    },
+    beforeLeave() {
+      console.log('beforeLeave');
+    },
+    leave(done) {
+      console.log('leave');
+      done()
+    },
+    afterLeave() {
+      console.log('afterLeave');
+    },
+    leaveCancelled() {
+      console.log('leaveCancelled');
+    },
   }
 }
+
 </script>
 
 <style>
@@ -76,6 +118,14 @@ export default {
   background-color: #e64343;
   color: white;
   border-radius: 5px;
+}
+
+.caixa {
+  height: 100px;
+  width: 300px;
+  margin: 5px auto;
+  border-radius: 5px;
+  background-color: lightblue;
 }
 
 .fade-enter,
