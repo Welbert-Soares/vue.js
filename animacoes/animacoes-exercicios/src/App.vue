@@ -1,14 +1,16 @@
 <template>
-	<div id="app" class="container-fluid">
-		<h1>Animações</h1>
+  <div id="app" class="container-fluid">
+    <h1>Animações</h1>
     <hr>
-    <button class="btn"
-      @click="exibir = !exibir">Mostrar Mensagem</button>
+    <button class="btn" @click="exibir = !exibir">Mostrar Mensagem</button>
 
     <transition name="fade">
       <div class="alert" v-if="exibir">{{ msg }}</div>
     </transition>
-	</div>
+    <transition name="slide">
+      <div class="alert" v-if="exibir">{{ msg }}</div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -25,13 +27,13 @@ export default {
 
 <style>
 #app {
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-	font-size: 1.5rem;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  font-size: 1.5rem;
 }
 
 .btn {
@@ -57,12 +59,42 @@ export default {
   border-radius: 5px;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 1.5s;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(40px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(40px);
+  }
+}
+
+.slide-enter-active {
+  animation: slide-in 1.3s ease;
+}
+
+.slide-leave-active {
+  animation: slide-out 1.3s ease;
 }
 
 </style>
