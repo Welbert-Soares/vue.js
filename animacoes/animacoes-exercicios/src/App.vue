@@ -4,11 +4,16 @@
     <hr>
     <button class="btn" @click="exibir = !exibir">Mostrar Mensagem</button>
 
-    <transition name="fade">
+    <transition name="fade" appear="">
       <div class="alert" v-if="exibir">{{ msg }}</div>
     </transition>
-    <transition name="slide">
-      <div class="alert" v-if="exibir">{{ msg }}</div>
+    <transition name="slide" type="animation" appear="">
+      <div class="alert" v-show="exibir">{{ msg }}</div>
+    </transition>
+    <transition 
+      enter-active-class="animate-bounce"
+      leave-active-class="animate-ping">
+      <div class="alert" v-show="exibir">{{ msg }}</div>
     </transition>
   </div>
 </template>
@@ -66,7 +71,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1.5s;
+  transition: opacity 2s;
 }
 
 @keyframes slide-in {
@@ -90,11 +95,17 @@ export default {
 }
 
 .slide-enter-active {
-  animation: slide-in 1.3s ease;
+  animation: slide-in 1s ease;
+  transition: opacity 2s;
 }
 
 .slide-leave-active {
-  animation: slide-out 1.3s ease;
+  animation: slide-out 2s ease;
+  transition: opacity 2s;
 }
 
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+}
 </style>
