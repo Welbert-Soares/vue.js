@@ -21,7 +21,11 @@
 				<li v-for="(usuario, id) in usuarios" :key="id" class="list-group-item">
 					<strong>Nome: </strong> {{ usuario.nome }}<br>
 					<strong>E-mail: </strong>{{ usuario.email }}<br>
-					<strong> ID: </strong> {{ id }}
+					<strong> ID: </strong> {{ id }}<br>
+					<button type="button" class="btn btn-warning"
+					@click="carregar(id)">Carregar</button>
+					<button type="button" class="btn btn-danger"
+					@click="excluir(id)">Excluir</button>
 				</li>
 			</ul>
 		</div>
@@ -34,6 +38,7 @@ export default {
 	data() {
 		return {
 			usuarios: [],
+			id: null,
 			usuario: {
 				nome: '',
 				email: ''
@@ -41,15 +46,25 @@ export default {
 		}
 	},
 	methods: {
+		limpar() {
+			this.usuario = {
+				nome: '',
+				email: '',
+			},
+			this.id = null
+		},
+		carregar(id){
+			this.id = id
+			this.usuario = {...this.usuarios[id]}
+		},
+		excluir(id){
+			this.$http.delete(`/usuarios/${id}.json`).then(() => this.limpar())
+		}, 
 		salvar() {
-			this.$http.post('usuarios.json', this.usuario)
-				.then(resp => {
-					console.log(resp)
-					this.usuario = {
-						nome: '',
-						email: ''
-					}
-				})
+			const metodo = this.id ? 'patch' : 'post'
+			const finalUrl = this.id ? `/${this.id}.json` : '.json'
+			this.$http[metodo](`/usuarios${finalUrl}`, this.usuario)
+				.then(() => this.limpar())
 		},
 		obterUsuarios() {
 			this.$http.get('usuarios.json')

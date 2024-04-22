@@ -8,6 +8,8 @@ const app = createApp(App);
 
 axios.defaults.baseURL = "https://curso-vue-67e5a-default-rtdb.firebaseio.com/";
 
+axios.defaults.headers.common["Authorization"] = "abc123";
+
 axios.interceptors.request.use(
   (config) => {
     console.log(config.method);
@@ -18,6 +20,7 @@ axios.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
 
 // axios.interceptors.response.use(
 //   (response) => {
