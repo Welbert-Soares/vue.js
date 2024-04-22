@@ -1,6 +1,15 @@
 <template>
 	<div id="app" class="container">
 		<h1>HTTP com Axios</h1>
+		<div class="ballonMensage" v-if="fecharMensagem">
+			<div class="alert alert-dismissible fade show" :class="`alert-${mensagem.tipo}`" role="alert"
+				v-for="mensagem in mensagens" :key="mensagem.texto">
+				{{ mensagem.texto }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+					@click="fecharMensagem = !fecharMensagem"></button>
+			</div>
+		</div>
+
 		<div class="form">
 			<div class="mb-3">
 				<label for="nomeInput" class="form-label ">Nome:</label>
@@ -22,10 +31,8 @@
 					<strong>Nome: </strong> {{ usuario.nome }}<br>
 					<strong>E-mail: </strong>{{ usuario.email }}<br>
 					<strong> ID: </strong> {{ id }}<br>
-					<button type="button" class="btn btn-warning"
-					@click="carregar(id)">Carregar</button>
-					<button type="button" class="btn btn-danger"
-					@click="excluir(id)">Excluir</button>
+					<button type="button" class="btn btn-warning" @click="carregar(id)">Carregar</button>
+					<button type="button" class="btn btn-danger" @click="excluir(id)">Excluir</button>
 				</li>
 			</ul>
 		</div>
@@ -37,6 +44,8 @@
 export default {
 	data() {
 		return {
+			fecharMensagem: true,
+			mensagens: [],
 			usuarios: [],
 			id: null,
 			usuario: {
@@ -51,20 +60,34 @@ export default {
 				nome: '',
 				email: '',
 			},
-			this.id = null
+				this.id = null
+			this.mensagens = []
 		},
-		carregar(id){
+		carregar(id) {
 			this.id = id
-			this.usuario = {...this.usuarios[id]}
+			this.usuario = { ...this.usuarios[id] }
 		},
-		excluir(id){
+		excluir(id) {
 			this.$http.delete(`/usuarios/${id}.json`).then(() => this.limpar())
-		}, 
+			.catch(() => {
+				this.mensagens.push({
+					texto: 'Erro ao excluir usuário',
+					tipo: 'danger'
+				})
+			})
+		},
 		salvar() {
 			const metodo = this.id ? 'patch' : 'post'
 			const finalUrl = this.id ? `/${this.id}.json` : '.json'
 			this.$http[metodo](`/usuarios${finalUrl}`, this.usuario)
-				.then(() => this.limpar())
+				.then(() => {
+					this.limpar()
+					this.mensagens.push({
+						texto: 'Usuário salvo com sucesso!',
+						tipo: 'success'
+					})
+					this.fecharMensagem = true
+				})
 		},
 		obterUsuarios() {
 			this.$http.get('usuarios.json')
